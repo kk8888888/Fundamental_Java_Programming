@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Fundamentals - Course Outline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .cover-page {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #1a2a6c, #2c3e50);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 100,100" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .header h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h3 {
+            font-size: 2.2rem;
+            color: #1a2a6c;
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title h3::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .topics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .topic-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .topic-header {
+            padding: 20px;
+            background: linear-gradient(to right, #1a2a6c, #2c3e50);
+            color: white;
+            position: relative;
+        }
+        
+        .topic-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 50px;
+            height: 50px;
+            background: #b21f1f;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .topic-title {
+            font-size: 1.4rem;
+            margin: 10px 0;
+            padding-left: 40px;
+        }
+        
+        .topic-content {
+            padding: 20px;
+            line-height: 1.6;
+            color: #444;
+            flex-grow: 1;
+        }
+        
+        .topic-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .topic-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .topic-content li::before {
+            content: "•";
+            color: #b21f1f;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .lab-indicator {
+            display: inline-block;
+            background: #e9f7ef;
+            color: #28a745;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: bold;
+            width: 100%;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+        }
+        
+        .decoration {
+            position: absolute;
+            opacity: 0.05;
+            font-size: 10rem;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .decoration.code-1 {
+            top: 20%;
+            left: 5%;
+            transform: rotate(-15deg);
+        }
+        
+        .decoration.code-2 {
+            bottom: 20%;
+            right: 5%;
+            transform: rotate(15deg);
+        }
+        
+        .decoration.code-3 {
+            top: 40%;
+            right: 15%;
+            transform: rotate(25deg);
+        }
+        
+        .decoration.code-4 {
+            bottom: 40%;
+            left: 15%;
+            transform: rotate(-25deg);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .header h2 {
+                font-size: 1.6rem;
+            }
+            
+            .section-title h3 {
+                font-size: 2rem;
+            }
+            
+            .topics-container {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .section-title h3 {
+                font-size: 1.8rem;
+            }
+            
+            .topic-title {
+                font-size: 1.3rem;
+            }
+            
+            .decoration {
+                font-size: 8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .section-title h3 {
+                font-size: 1.6rem;
+            }
+            
+            .topics-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .topic-title {
+                font-size: 1.2rem;
+                padding-left: 35px;
+            }
+            
+            .topic-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .decoration {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h3 {
+                font-size: 1.4rem;
+            }
+            
+            .topic-content {
+                padding: 15px;
+            }
+            
+            .topic-content li {
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .cover-page {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .topic-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+            
+            .topic-card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cover-page">
+            <div class="header">
+                <h1>Programming Fundamentals</h1>
+                <h2>Comprehensive Course Outline</h2>
+            </div>
+            
+            <div class="content">
+                <div class="section-title">
+                    <h3>Course Modules</h3>
+                </div>
+                
+                <div class="topics-container">
+                    <!-- Topic 1 -->
+                    <div class="topic-card">
+                        <div class="topic-number">1</div>
+                        <div class="topic-header">
+                            <h3 class="topic-title">Overview of Computer and Programming</h3>
+                        </div>
+                        <div class="topic-content">
+                            <ul>
+                                <li>Introduction to computers (then and now)</li>
+                                <li>Computer hardware components</li>
+                                <li>Software categories and types</li>
+                                <li>The software development methodology</li>
+                                <li>Programming paradigms overview</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 2 -->
+                    <div class="topic-card">
+                        <div class="topic-number">2</div>
+                        <div class="topic-header">
+                            <h3 class="topic-title">Designing Algorithm I</h3>
+                        </div>
+                        <div class="topic-content">
+                            <ul>
+                                <li>Introduction to algorithms</li>
+                                <li>Steps in creating effective algorithms</li>
+                                <li>Using NS Diagrams for visualization</li>
+                                <li>Decision tables for complex logic</li>
+                            </ul>
+                            <div class="lab-indicator">
+                                <i class="fas fa-flask"></i> Lab: Designing NS Diagrams and decision tables using tools
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 3 -->
+                    <div class="topic-card">
+                        <div class="topic-number">3</div>
+                        <div class="topic-header">
+                            <h3 class="topic-title">Designing Algorithm II</h3>
+                        </div>
+                        <div class="topic-content">
+                            <ul>
+                                <li>Designing algorithms with pseudocode</li>
+                                <li>Flowchart creation techniques</li>
+                                <li>Selection structures in algorithms</li>
+                                <li>Repetition structures and loops</li>
+                            </ul>
+                            <div class="lab-indicator">
+                                <i class="fas fa-flask"></i> Lab: Designing flowcharts using drawing tools
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 4 -->
+                    <div class="topic-card">
+                        <div class="topic-number">4</div>
+                        <div class="topic-header">
+                            <h3 class="topic-title">Overview of Java</h3>
+                        </div>
+                        <div class="topic-content">
+                            <ul>
+                                <li>Java language elements and syntax</li>
+                                <li>Variable declarations and scope</li>
+                                <li>Data types and type systems</li>
+                                <li>Executable statements and structure</li>
+                            </ul>
+                            <div class="lab-indicator">
+                                <i class="fas fa-flask"></i> Lab: Introduction to Java and running a simple program
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 5 -->
+                    <div class="topic-card">
+                        <div class="topic-number">5</div>
+                        <div class="topic-header">
+                            <h3 class="topic-title">Data Types, Operators, and Simple Functions</h3>
+                        </div>
+                        <div class="topic-content">
+                            <ul>
+                                <li>Understanding primitive data types</li>
+                                <li>Arithmetic expressions and precedence</li>
+                                <li>Writing mathematical formulas in Java</li>
+                                <li>Using standard library functions</li>
+                                <li>Basic function creation and invocation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 6 -->
+                    <div class="topic-card">
+                        <div class="topic-number">6</div>
+                        <div class="topic-header">
+                            <h3 class="topic-title">Selection and Repetitive Structures</h3>
+                        </div>
+                        <div class="topic-content">
+                            <ul>
+                                <li>Implementing selection structures (if-else)</li>
+                                <li>Switch statements for multiple branches</li>
+                                <li>While loops for conditional repetition</li>
+                                <li>For loops for counted iterations</li>
+                                <li>Loop control statements (break, continue)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>Department of Computer Science | Programming Fundamentals Course Outline</p>
+                <p>&copy; 2023 All Rights Reserved</p>
+            </div>
+            
+            <div class="decoration code-1">
+                { }
+            </div>
+            <div class="decoration code-2">
+                &lt;/&gt;
+            </div>
+            <div class="decoration code-3">
+                #()
+            </div>
+            <div class="decoration code-4">
+                []
+            </div>
+        </div>
+    </div>
+</body>
+</html>
