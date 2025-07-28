@@ -2,7 +2,7 @@
 
 ![Java](https://img.shields.io/badge/Language-Java-orange.svg)![License](https://img.shields.io/badge/License-MIT-blue.svg)![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
-This repository contains course materials, including notes, code examples, and assignments for the **Fundamental of Programming (DBFP2423)** course.
+This repository contains course materials, including notes, code examples, and assignments for the **Fundamental of Java Programming ** course.
 
 ## 📜 Course Description
 
